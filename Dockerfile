@@ -2,7 +2,7 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-# Ensure we have essential build tools if needed
+# Essential build tools for lightweight dependency compilation
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
@@ -10,14 +10,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy project files
+# Copy minimal project files required for the environment
 COPY env.py .
-COPY inference.py .
+COPY server.py .
 COPY openenv.yaml .
 
-# Set default env variables (can be overridden)
+# Set default env variables for HF Spaces compatibility
 ENV API_BASE_URL=https://router.huggingface.co/v1
 ENV MODEL_NAME=meta-llama/Llama-3-8B-Instruct
+ENV PORT=7860
 
-# Execution command as specified for OpenEnv
-CMD ["python", "inference.py"]
+# Expose standard HF Space port
+EXPOSE 7860
+
+# Fast Cold Start: Run uvicorn directly with optimized worker count
+CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "7860", "--workers", "1"]
