@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0A0A0A;
+  /* Charcoal 200 */
+  color: #F5F5F0;
+  /* Beige 100 */
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #F5F5F020;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F5F5F040;
+}
+
+.glass-card {
+  background: rgba(26, 26, 26, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(245, 245, 240, 0.1);
+}
+
+.section-padding {
+  @apply py-20 px-6 md:px-24;
+}
+
+.mask-fade-bottom {
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+/* Specific button style for the dark theme */
+.btn-primary {
+  @apply px-8 py-4 bg-beige-100 text-charcoal-200 rounded-xl flex items-center justify-center gap-3 shadow-2xl hover:translate-y-[-2px] transition-all font-bold tracking-widest uppercase text-xs;
+}
+
+.btn-secondary {
+  @apply px-8 py-4 border-2 border-beige-100/10 text-beige-100 rounded-xl flex items-center justify-center gap-3 hover:bg-beige-100/5 transition-all font-bold tracking-widest uppercase text-xs;
+}
