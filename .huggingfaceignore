@@ -1,0 +1,10 @@
+.git/
+node_modules/
+frontend/node_modules/
+venv/
+.venv/
+__pycache__/
+*.egg-info/
+build/
+.idea/
+.vscode/
