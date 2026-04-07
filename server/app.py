@@ -19,14 +19,14 @@ def health_check():
     return {"status": "healthy", "env": "ethical-hacker-v1"}
 
 @app.post("/reset")
-def reset(task_id: str = "hard"):
+async def reset(task_id: str = "hard"):
     """
     Resets the environment for a specific task.
     Returns standard OpenEnv reset response shape.
     """
     global _env
     _env = EthicalHackerEnv(task_id=task_id)
-    obs = _env.reset()
+    obs = await _env.reset()
     return {
         "observation": obs.model_dump(),
         "reward": 0.0,
@@ -35,13 +35,13 @@ def reset(task_id: str = "hard"):
     }
 
 @app.post("/step")
-def step(request: StepRequest):
+async def step(request: StepRequest):
     """
     Executes a single step in the environment.
     Ensures zero unwanted print statements in production routes.
     """
     try:
-        obs, reward, done, info = _env.step(request.action)
+        obs, reward, done, info = await _env.step(request.action)
         return {
             "observation": obs.model_dump(),
             "reward": reward,
@@ -56,3 +56,11 @@ def step(request: StepRequest):
 def get_state():
     """Returns the internal state snapshot for validation."""
     return _env.state()
+
+def main():
+    """Entry point for the OpenEnv benchmark orchestrator."""
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=7860, workers=1)
+
+if __name__ == "__main__":
+    main()
