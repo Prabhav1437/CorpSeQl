@@ -16,7 +16,7 @@ dependencies = [
 server = "server.app:main"
 
 [project.urls]
-Homepage = "https://huggingface.co/spaces/prabhav/corpseql"
+Homepage = "https://huggingface.co/spaces/Prabhav1437/corpseql"
 
 [tool.setuptools]
 packages = ["server"]

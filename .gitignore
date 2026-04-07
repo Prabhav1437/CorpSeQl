@@ -19,3 +19,5 @@ eggs/
 *.egg-info/
 .installed.cfg
 *.egg
+frontend/node_modules/
+node_modules/
