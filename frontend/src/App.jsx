@@ -9,7 +9,6 @@ import {
   Server, Fingerprint, BarChart3, Binary, ShieldCheck, Check
 } from 'lucide-react';
 
-// --- SHARED COMPONENTS ---
 
 const SectionTitle = ({ subtitle, title, light = false }) => (
   <div className="mb-20">
