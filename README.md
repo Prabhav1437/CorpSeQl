@@ -16,8 +16,7 @@ tags:
 
 This environment provides a high-fidelity simulation of an SQL injection vulnerability scenario, challenging AI agents to navigate the technical and ethical dimensions of cybersecurity. It is built for the **OpenEnv** framework to evaluate an agent's ability to conduct reconnaissance, execution, disclosure, and remediation.
 
-Note - for information can also refer to - https://web-login-vulnerability-simulator.vercel.app
-
+Note - for information can also refer to - https://corpseql.vercel.app/
 ---
 
 ## System Architecture
