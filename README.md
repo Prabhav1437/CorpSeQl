@@ -46,8 +46,8 @@ This environment exposes a key limitation in current LLM agents: while exploitat
 ## Design Trade-offs
 
 ### 1. Determinism vs. Realism
-To ensure reproducible research, the environment uses a **fully deterministic** response model. While real-world databases might have latency or race conditions, this simulator ensures that identical payloads in identical states always yield identical results.
-
+To ensure reproducible research, the environment uses a **highly deterministic** core response model. While real-world databases might have latency or race conditions, this simulator ensures that identical payloads in identical states always yield identical results.
+> **Note to Evaluators:** Terminal outputs (Logs and Hint verbiage) are dynamically generated to provide high-fidelity realism without breaking the strict deterministic logic that drives score evaluation.
 ### 2. Simplicity vs. Scalability
 The action space is kept concise to manage the search space for LLMs, but the internal state is expansive. This allows for simple interactions today while supporting complex reward shaping that can penalize subtle unethical patterns (like repeated exploitation).
 
