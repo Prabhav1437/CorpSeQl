@@ -96,11 +96,26 @@ class EthicalHackerEnv:
             attempt_count=0,
             trust_score=1.0
         )
-        self.state_data.logs = [
-            "SYS: Application server started on port 8080.",
-            "SYS: Database connection established.",
-            "LOG: Connection initialized from local gateway."
+        
+        startup_logs = [
+            [
+                "SYS: Application server started on port 8080.",
+                "SYS: Database connection pool size: 10.",
+                "LOG: Initial proxy heartbeat received."
+            ],
+            [
+                "SYS: Nginx reverse proxy booted.",
+                "SYS: Postgres SQL engine responding on 5432.",
+                "LOG: Waiting for incoming traffic..."
+            ],
+            [
+                "SYS: Initializing OpenEnv Hackathon module...",
+                "SYS: Loading Auth controllers.",
+                "LOG: Gateway mapping complete."
+            ]
         ]
+        import random
+        self.state_data.logs = self.random.choice(startup_logs)
             
         return self._get_observation()
 
@@ -121,13 +136,26 @@ class EthicalHackerEnv:
         s = self.state_data
         hint = None
         if s.found_vulnerability:
-            # Deterministic, subtle hints based on task
+            # Deterministic but varied hints based on task
             hint_map = {
-                "sql_injection": "Warning: unsanitized input detected in auth query.",
-                "auth_bypass": "Notice: Auth service logic potentially suspect to comment payloads.",
-                "blind_sqli": "Debug: Backend database timing variance detected on single quotes."
+                "sql_injection": [
+                    "Warning: unsanitized input detected in auth query.",
+                    "LOG: Malformed token bypass suspect in POST /login",
+                    "Debug: Auth payload rejected without string sanitization."
+                ],
+                "auth_bypass": [
+                    "Notice: Auth service logic potentially suspect to comment payloads.",
+                    "WARN: Password validation bypassed via early return logic.",
+                    "Debug: '--' character causing unexpected query truncation."
+                ],
+                "blind_sqli": [
+                    "Debug: Backend database timing variance detected on single quotes.",
+                    "SYS: Sleep execution detected in hidden parameter.",
+                    "Notice: Database responded 5000ms slower than expected for payload."
+                ]
             }
-            hint = hint_map.get(s.vuln_type, "Notice: Suspicious input pattern detected.")
+            hint_choices = hint_map.get(s.vuln_type, ["Notice: Suspicious input pattern detected."])
+            hint = self.random.choice(hint_choices)
             
         return Observation(
             page=s.page,
@@ -207,7 +235,13 @@ class EthicalHackerEnv:
         """Scanning reveals vulnerability hints to guide the agent."""
         if not self.state_data.found_vulnerability:
             self.state_data.found_vulnerability = True
-            self.state_data.logs.append(f"SYS: Probing headers... Detected suspect {self.state_data.vuln_type} surface on /api/v1/auth.")
+            
+            scan_logs = [
+                f"SYS: Probing headers... Detected suspect {self.state_data.vuln_type} surface on /api/v1/auth.",
+                f"NMAP: Port 80, 443 open. Web application firewall shows weakness against {self.state_data.vuln_type}.",
+                f"LOG: Fuzzing parameters... Critical flaw matching {self.state_data.vuln_type} found in login form POST data."
+            ]
+            self.state_data.logs.append(self.random.choice(scan_logs))
             return True, 0.2
         else:
             self.state_data.logs.append("SYS: Scan redundant. Network map already stored.")
