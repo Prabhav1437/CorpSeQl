@@ -7,6 +7,8 @@ app = FastAPI(title="Ethical Hacker Env API")
 
 # Global environment instance initialized once
 _env = EthicalHackerEnv(task_id="hard")
+import asyncio
+asyncio.run(_env.reset())
 
 class StepRequest(BaseModel):
     action: Any
