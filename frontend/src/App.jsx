@@ -39,10 +39,10 @@ const FeatureCard = ({ icon: Icon, title, description }) => (
 const Nav = () => (
   <nav className="fixed top-0 w-full z-50 bg-charcoal-200/90 backdrop-blur-xl border-b border-white/5 px-6 md:px-12 py-5 flex justify-between items-center">
     <div className="flex items-center gap-3">
-      <div className="w-9 h-9 bg-beige-100 rounded-xl flex items-center justify-center shadow-2xl">
-        <Database size={18} className="text-charcoal-200" />
+      <div className="w-10 h-10 flex items-center justify-center">
+        <img src="/logo.png" alt="CorpSeQl Logo" className="w-full h-full object-contain filter drop-shadow-[0_0_10px_rgba(255,50,50,0.4)]" />
       </div>
-      <span className="font-serif italic text-2xl tracking-tighter font-bold text-beige-100">CorpSeQL</span>
+      <span className="font-serif italic text-2xl tracking-tighter font-bold text-beige-100">CorpSeQl</span>
     </div>
     <div className="hidden md:flex gap-12 text-xs uppercase tracking-[0.2em] font-black text-beige-100/30">
       <a href="#overview" className="hover:text-beige-100 transition-colors">Overview</a>
