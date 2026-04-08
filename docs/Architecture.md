@@ -1,4 +1,4 @@
-# 🛡️ CorpSeQL System Architecture & Pipeline Documentation
+#  CorpSeQL System Architecture & Pipeline Documentation
 
 This document provides a comprehensive technical breakdown of **CorpSeQL**, an Ethical Hacker Simulator built for the OpenEnv benchmark. It details the data models, state loops, and deployment pipelines to be used for presentations, judging panels, and developer references.
 
