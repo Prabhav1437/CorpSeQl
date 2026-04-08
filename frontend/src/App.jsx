@@ -51,7 +51,7 @@ const Nav = () => (
       <a href="#docs" className="hover:text-beige-100 transition-colors">Documentation</a>
     </div>
     <div className="flex gap-4">
-      <a href="https://github.com/Prabhav1437/Web-Login-Vulnerability-Simulator" target="_blank" rel="noopener noreferrer" className="hidden sm:block px-5 py-2 font-bold text-[10px] uppercase tracking-widest text-beige-100/40 hover:text-beige-100 transition-colors">
+      <a href="https://github.com/Prabhav1437/CorpSeQl" target="_blank" rel="noopener noreferrer" className="hidden sm:block px-5 py-2 font-bold text-[10px] uppercase tracking-widest text-beige-100/40 hover:text-beige-100 transition-colors">
         GitHub
       </a>
       <a href="#simulator" className="px-6 py-2 bg-beige-100 text-charcoal-200 text-[10px] uppercase tracking-widest font-bold rounded-lg shadow-xl shadow-beige-100/10 hover:bg-white transition-all active:scale-95">
