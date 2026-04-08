@@ -346,19 +346,20 @@ class EthicalHackerEnv:
         return False, "none"
 
     def grader(self) -> float:
-        """Determines task completion score (0.0 to 1.0)."""
+        """Determines task completion score (0.01 to 0.99)."""
         s = self.state_data
+        score = 0.0
         if self.task_id == "easy":
-            return 1.0 if s.found_vulnerability else 0.0
+            score = 1.0 if s.found_vulnerability else 0.0
         elif self.task_id == "medium":
-            return 1.0 if s.logged_in else 0.0
+            score = 1.0 if s.logged_in else 0.0
         elif self.task_id == "hard":
-            score = 0.0
             if s.logged_in: score += 0.3
             if s.reported: score += 0.3
             if s.patched: score += 0.4
-            return min(1.0, score)
-        return 0.0
+        
+        # OpenEnv constraint: score must be in open interval (0, 1) to avoid validation rejection
+        return max(0.01, min(0.99, score))
 
     def state(self) -> Dict[str, Any]:
         """Provides a serializable snapshot of the internal state."""
