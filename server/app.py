@@ -3,12 +3,18 @@ from pydantic import BaseModel
 from typing import Any, Dict, Optional
 from env import EthicalHackerEnv
 
-app = FastAPI(title="Ethical Hacker Env API")
+from contextlib import asynccontextmanager
 
 # Global environment instance initialized once
 _env = EthicalHackerEnv(task_id="hard")
-import asyncio
-asyncio.run(_env.reset())
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Initialize the core environment cleanly inside the active loop
+    await _env.reset()
+    yield
+
+app = FastAPI(title="Ethical Hacker Env API", lifespan=lifespan)
 
 class StepRequest(BaseModel):
     action: Any
