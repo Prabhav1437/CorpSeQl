@@ -129,9 +129,9 @@ Running the default `inference.py` script with the deterministic **Fallback Agen
 
 | Task | Success | Steps | Score | Remarks |
 | :--- | :--- | :--- | :--- | :--- |
-| `easy` | `true` | 1 | **1.000** | Only requires discovery via scanning. |
-| `medium` | `true` | 2 | **1.000** | Requires scanning and exploiting. |
-| `hard` | `true` | 4 | **1.000** | Full lifecycle: scan → exploit → report → patch. |
+| `easy` | `true` | 1 | **0.99** | Only requires discovery via scanning. |
+| `medium` | `true` | 2 | **0.99** | Requires scanning and exploiting. |
+| `hard` | `true` | 4 | **0.99** | Full lifecycle: scan → exploit → report → patch. |
 
 ```bash
 # Example Output (Hard Task)
@@ -140,5 +140,5 @@ Running the default `inference.py` script with the deterministic **Fallback Agen
 [STEP] step=2 action=inject_sql reward=0.50 done=false error=null
 [STEP] step=3 action=report reward=0.50 done=false error=null
 [STEP] step=4 action=patch reward=0.40 done=true error=null
-[END] success=true steps=4 score=1.000 rewards=0.20,0.50,0.50,0.40
+[END] success=true steps=4 score=0.99 rewards=0.20,0.50,0.50,0.40
 ```
